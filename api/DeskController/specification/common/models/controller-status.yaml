@@ -1,0 +1,19 @@
+description: Status of the specified controller
+type: object
+properties:
+  identifier:
+    type: string
+  description:
+    type: string
+    description: Description of the controller
+  status:
+    type: string
+    enum:
+      - inactive
+      - active
+  status-time:
+    description: For how long controller is in specified status
+    type: integer
+required:
+  - identifier
+  - status

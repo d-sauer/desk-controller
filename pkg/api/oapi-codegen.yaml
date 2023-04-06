@@ -1,0 +1,6 @@
+package: api
+generate:
+  models: true
+  gorilla-server: true
+  embedded-spec: true
+output: rest.gen.go
