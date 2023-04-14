@@ -7,8 +7,12 @@ LINUX=./bin/$(EXECUTABLE)_linux_amd64
 DARWIN=./bin/$(EXECUTABLE)_darwin_amd64
 VERSION=$(shell git describe --tags --always --long --dirty)
 
-run:
-	go run main.go
+run-server:
+	go run ./cmd/server/main.go
+
+build-server:
+	go build ./cmd/server/main.go
+
 
 .PHONY: all test clean
 
