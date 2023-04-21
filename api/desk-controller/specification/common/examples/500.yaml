@@ -1,5 +1,0 @@
-type: /problem/internal-server-error
-title: Internal Server Error
-status: 500
-detail: A technical exception occurred within the application
-instance: /problem/internal-server-error#a-technical-exception-occurred-within-the-application

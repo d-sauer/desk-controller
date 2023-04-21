@@ -111,28 +111,28 @@ type serverConfig struct {
 	Logger      *zap.Logger
 }
 
-func newServer(sc serverConfig) (*http.Server, error) {
-	r := chi.NewRouter()
+func newServer(config serverConfig) (*http.Server, error) {
+	router := chi.NewRouter()
 
-	r.Use(render.SetContentType(render.ContentTypeJSON))
+	router.Use(render.SetContentType(render.ContentTypeJSON))
 
 	// A good base middleware stack
-	r.Use(middleware.Logger)
-	r.Use(middleware.RequestID)
-	r.Use(middleware.RealIP)
-	r.Use(middleware.Logger)
+	router.Use(middleware.Logger)
+	router.Use(middleware.RequestID)
+	router.Use(middleware.RealIP)
+	router.Use(middleware.Logger)
 
 	// Load middlewares
-	for _, mw := range sc.Middlewares {
-		r.Use(mw)
+	for _, mw := range config.Middlewares {
+		router.Use(mw)
 	}
 
-	r.Mount("/", rest.DeskControllerRouter())
-	r.Mount("/app", appRouter())
+	router.Mount("/", rest.DeskControllerRouter())
+	router.Mount("/app", appRouter())
 
 	return &http.Server{
-		Handler:           r,
-		Addr:              sc.Address,
+		Handler:           router,
+		Addr:              config.Address,
 		ReadTimeout:       1 * time.Second,
 		ReadHeaderTimeout: 1 * time.Second,
 		WriteTimeout:      1 * time.Second,

@@ -1,0 +1,15 @@
+description: Action on the specified controller
+type: object
+properties:
+  action:
+    description: Type of the action to be performed
+    type: string
+    default: "on"
+    enum:
+      - "on"
+      - "off"
+  duration:
+    description: Activate controller for a given time in MilliSeconds
+    type: integer
+required:
+  - duration
